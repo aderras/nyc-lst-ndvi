@@ -2,7 +2,47 @@
 
 ## Introduction
 
-This repository was created for the Earth Observations Applications for Resiliency team in NASA's Climate Change Research initiative. In it are the Jupyter notebooks and processed data used to compute land surface temperature (LST) and normalized difference vegetation index (NDVI) in New York City from the 1980s to the 2022.
+This repository was created for the Earth Observations Applications for Resiliency team in NASA's Climate Change Research initiative. In it are the Jupyter notebooks and processed data used to compute land surface temperature (LST) and normalized difference vegetation index (NDVI) in New York City from the 1984 to the 2022.
+
+## Methodology
+
+### A. Find viable data
+
+1. Perform a dataset search using the USGS API. We input the aliases of the desired datasets, Landsats 5 and 8, to obtain a list of dataset objects.
+2. For every dataset object, search for scenes that contain lower left (`ll`) and upper right (`ur`) longitude and latitude coordinates of a square encompassing NYC. 
+3. Filter the resulting scenes for:
+    - Less than 10% cloud cover
+    - Areas that contain the upper left `ul` and lower right `lr` corners of a square encompassing NYC. 
+4. Export a list of the `displayId`s of the scenes to the file `02-data/scene-search/scene_c1_l1_displayIds.txt`. A `displayId` is a USGS identifier for the scene. The suffix `c1_l1` refers to collection 1, level 1.
+
+### B. Download Landsat Data
+
+To download landsat data, we use the USGS bulk downloader. The steps are:
+
+1. **Install the bulk downloader application from [USGS](https://dds.cr.usgs.gov/bulk).** For Linux, I had to first install Java 11 in my local directory. To run the installer, I define the `INSTALL4J_JAVA_HOME` variable in my `.bash_profile` file. After refreshing terminal (or just loading the editted `.bash_profile` as the source), I make the downloaded installer executable and run it through command line. When it asks for download locations, make sure to select ones within the local directory if you do not have root access. To run the program in the future, navigate to the executable in install directory you chose.
+2. **Create a bulk download request.** In the [EarthExplorer](https://earthexplorer.usgs.gov/) webpage, select `Manage Criteria`. Click on `Scene Lists` in the left menu. Then click on Landsat Product ID list. Copy and paste the Landsat IDs that were saved to `scene_c1_l1_displayIDs.txt` into the text box. Then click upload. 
+3. **Select download type.** The next page asks you to select the type of image you would like for every single scene. Instead of this, click the `Options` button and select the Level-1 option, which should then select this for all the scenes.
+4. **Download scenes.** Follow instructions within the bulk downloader to select scenes. 
+
+**NOTE:** Even though USGS encourages us to use Collection 2 Landsat data, the bulk-download request returns an error whenever a Collection 2 scene is requested. This is why only Collection 1 scenes were used. (As of January 2022.)
+
+### C. Clip Raw Data to NYC 
+
+We clip raw Landsat data to the New York City boundary. We clip only the band numbers that are needed for land surface temperature (LST) and normalized-difference vegetation index (NDVI) calculations. The bands used are summarized in the following table.
+
+|Satellite| Bands|
+|---------|------|
+|Landsat 5| 3, 4, and 6|
+|Landsat 8| 4, 5, and 10|
+
+To clip, we use python's `geopandas` and `rioxarray` libraries. The function is called `clip_and_export` and is located in `01-scripts/helpers.py`.
+
+Clipped files are exported to the `landsat_clipped_nyc/` folder. They are given the same name as the original landsat file, prepended with "clipped_nyc_". For example, `clipped_nyc_LC08_L1TP_013032_20140731_20170304_01_T1_B10.TIF`.
+
+### D. Compute LST and NDVI
+
+### E. Compute Summary Statistics
+
 
 ## Data
 
