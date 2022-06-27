@@ -69,7 +69,7 @@ Data is exported to the folders `02-data/ndvi_clipped_nyc` and `02-data/lst_clip
 <img src="https://github.com/aderras/nyc-lst-ndvi/blob/main/03-figs/lst_LT05_L1TP_014032_20110831_20160831_01_T1.png" width="600">
 </p>
 <p align="center">
-    <em>An example of Land surface temperature computed in NYC using raw data from the Landsat files "LT05_L1TP_014032_20110831_20160831_01_T1". </em>
+    <em>An example of land surface temperature computed in NYC using raw data from the Landsat files "LT05_L1TP_014032_20110831_20160831_01_T1". Temperature scale is in Kelvin. </em>
 </p>
 
 ### E. Compute Summary Statistics
@@ -88,7 +88,7 @@ We additionally compute aggregate summary statistics. For every Landsat file, we
 
 ## Data
 
-LST and NDVI are computed using raw data from Landsats 5 and 8. The raw data is available from the USGS, and the scenes used are listed in [Table 1](#landsatids). Data sources, data types, and naming conventions for the raw and processed data are shown in [Tables 2](#raw-data) and [3](processed-data). All data is stored in the `02-data/` folder of the project. All folders referred to below are with respect to this one. 
+LST and NDVI are computed using raw data from Landsats 5 and 8. The raw data is available from the USGS, and the scenes used are listed in [Table 1](#landsatids). Data sources, data types, and naming conventions for the raw and processed data are shown in [Tables 2](#raw-data) and [3](#processed-data). All data is stored in the `02-data/` folder of the project. All folders referred to below are with respect to this one. 
 
 ### Table 1: Landsat scenes used <a id="landsatids"></a>
 
