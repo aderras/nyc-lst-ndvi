@@ -15,7 +15,7 @@ The following was completed on a Linux Centos computer using Python 3.6.12. The 
     - areas that contain the upper left `ul` and lower right `lr` corners of a square encompassing NYC. 
 4. **Save results.** Export a list of the `displayId`s of the scenes to the file `02-data/scene-search/scene_c1_l1_displayIds.txt`. A `displayId` is the USGS identifier for the scene. The suffix `c1_l1` refers to Collection 1, Level 1.
 
-<img src="https://ims.cr.usgs.gov/browse/landsat_8_c1/2015/014/032/LC08_L1TP_014032_20150826_20170225_01_T1.jpg" width="100">
+<img src="https://ims.cr.usgs.gov/browse/landsat_8_c1/2015/014/032/LC08_L1TP_014032_20150826_20170225_01_T1.jpg" width="400" class="center">
 
 ### B. Download Landsat Data
 
