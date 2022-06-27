@@ -17,6 +17,7 @@ The following was completed on a Linux Centos computer using Python 3.6.12. The 
 
 <p align="center">
 <img src="https://ims.cr.usgs.gov/browse/landsat_8_c1/2015/014/032/LC08_L1TP_014032_20150826_20170225_01_T1.jpg" width="400">
+    <em>An example of a Landsat scene which fits the search criteria described in the text. </em>
 </p>
 
 ### B. Download Landsat Data
@@ -34,16 +35,15 @@ To download Landsat data, we use the USGS bulk downloader. The steps are:
 
 We clip raw Landsat data to the New York City boundary. We clip only the band numbers that are needed for LST and NDVI calculations. The bands used are summarized in the following table.
 
-<p align="center">
 |Satellite| Bands|
 |---------|------|
 |Landsat 5| 3, 4, and 6|
 |Landsat 8| 4, 5, and 10|
-</p>
 
 To clip, we use python's `geopandas` and `rioxarray` libraries. The function is called `clip_and_export` and is located in `01-scripts/helpers.py`.
 
 Clipped files are exported to the `landsat_clipped_nyc/` folder. They are given the same name as the original Landsat file, prepended with "clipped_nyc_". For example, `clipped_nyc_LC08_L1TP_013032_20140731_20170304_01_T1_B10.TIF`.
+
 
 ### D. Compute LST and NDVI
 
@@ -62,6 +62,11 @@ To compute LST, we follow the procedure outline by McConnell et al. in their 202
 6. Compute LST using brightness temperature, emissivity, and some constants (specified in McConnell's paper)
 
 Data is exported to the folders `02-data/ndvi_clipped_nyc` and `02-data/lst_clipped_nyc`. The exported filenames contain the parameter computed with the truncated Landsat filename. For example, the file `ndvi_LT05_L1TP_013032_19910801_20160929_01_T1.tif` contains the NDVI calculation in NYC obtained Landsat files `LT05_L1TP_013032_19910801_20160929_01_T1_BX`, where the `X` refers to bands 3, 4, or 6.
+
+<p align="center">
+<img src="https://github.com/aderras/nyc-lst-ndvi/blob/main/03-figs/lst_LT05_L1TP_014032_20110831_20160831_01_T1.png" width="400">
+    <em>An example of Land surface temperature computed in NYC using raw data from the Landsat files "LT05_L1TP_014032_20110831_20160831_01_T1".</em>
+</p>
 
 ### E. Compute Summary Statistics
 
