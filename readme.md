@@ -17,6 +17,7 @@ The following was completed on a Linux Centos computer using Python 3.6.12. The 
 
 <p align="center">
 <img src="https://ims.cr.usgs.gov/browse/landsat_8_c1/2015/014/032/LC08_L1TP_014032_20150826_20170225_01_T1.jpg" width="400">
+    
     <em>An example of a Landsat scene which fits the search criteria described in the text. </em>
 </p>
 
