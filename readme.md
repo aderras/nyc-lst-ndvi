@@ -34,10 +34,12 @@ To download Landsat data, we use the USGS bulk downloader. The steps are:
 
 We clip raw Landsat data to the New York City boundary. We clip only the band numbers that are needed for LST and NDVI calculations. The bands used are summarized in the following table.
 
+<p align="center">
 |Satellite| Bands|
 |---------|------|
 |Landsat 5| 3, 4, and 6|
 |Landsat 8| 4, 5, and 10|
+</p>
 
 To clip, we use python's `geopandas` and `rioxarray` libraries. The function is called `clip_and_export` and is located in `01-scripts/helpers.py`.
 
