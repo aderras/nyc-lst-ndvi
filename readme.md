@@ -8,7 +8,7 @@ The following was completed on a Linux Centos computer using Python 3.6.12. The 
 
 ### A. Find Viable Data
 
-1. **Perform a dataset search using the USGS API.** All functions related to this are in the script `01-scripts/usgsAPI`, and the notebook used query the API is `00-notebooks/1_find-scenes`. We input the aliases of the desired datasets, Landsats 5 and 8, to obtain a list of dataset objects.
+1. **Perform a dataset search using the USGS API.** All functions related to this are in the script `01-scripts/usgsAPI.py`, and the notebook used query the API is `00-notebooks/1_find-scenes.ipynb`. We input the aliases of the desired datasets, Landsats 5 and 8, to obtain a list of dataset objects.
 2. **Filter for NYC.** For every dataset object, search for scenes that contain lower left (`ll`) and upper right (`ur`) longitude and latitude coordinates of a square encompassing NYC. 
 3. **Filter the resulting scenes for ones with:**
     - less than 10% cloud cover
@@ -69,7 +69,7 @@ Data is exported to the folders `02-data/ndvi_clipped_nyc` and `02-data/lst_clip
 <img src="https://github.com/aderras/nyc-lst-ndvi/blob/main/03-figs/lst_LT05_L1TP_014032_20110831_20160831_01_T1.png" width="600">
 </p>
 <p align="center">
-    <em>An example of land surface temperature computed in NYC using raw data from the Landsat files "LT05_L1TP_014032_20110831_20160831_01_T1". Temperature scale is in Kelvin. </em>
+    <em>An example of land surface temperature computed in NYC using raw data from the Landsat files with identifiers "LT05_L1TP_014032_20110831_20160831_01_T1". The temperature scale is in Kelvin. </em>
 </p>
 
 ### E. Compute Summary Statistics
@@ -222,7 +222,7 @@ A total of 113 Landsat scenes fit the search criteria. Their identifiers are sto
 
 ### Table 3: Processed Data <a id="processed-data"></a>
 
-Below we refer to an identifier called **TRUNCATED-LANDSAT-FILENAME**. This is the Landsat identifier with band number omitted. E.g. "LC08_L1TP_013032_20140731_20170304_01_T1_B4.TIF" has the truncated identifier "LC08_L1TP_013032_20140731_20170304_01_T1"
+Below we refer to an identifier called **TRUNCATED-LANDSAT-FILENAME**. This is the Landsat filename with band number omitted. E.g. "LC08_L1TP_013032_20140731_20170304_01_T1_B4.TIF" has the truncated identifier "LC08_L1TP_013032_20140731_20170304_01_T1"
 
 | Description | Location | Data type | Naming convention | 
 |----|--|--|----|
