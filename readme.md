@@ -66,8 +66,10 @@ To compute LST, we follow the procedure outline by McConnell et al. in their 202
 Data is exported to the folders `02-data/ndvi_clipped_nyc` and `02-data/lst_clipped_nyc`. The exported filenames contain the parameter computed with the truncated Landsat filename. For example, the file `ndvi_LT05_L1TP_013032_19910801_20160929_01_T1.tif` contains the NDVI calculation in NYC obtained Landsat files `LT05_L1TP_013032_19910801_20160929_01_T1_BX`, where the `X` refers to bands 3, 4, or 6.
 
 <p align="center">
-<img src="https://github.com/aderras/nyc-lst-ndvi/blob/main/03-figs/lst_LT05_L1TP_014032_20110831_20160831_01_T1.png" width="400">
-    <em>An example of Land surface temperature computed in NYC using raw data from the Landsat files "LT05_L1TP_014032_20110831_20160831_01_T1".</em>
+<img src="https://github.com/aderras/nyc-lst-ndvi/blob/main/03-figs/lst_LT05_L1TP_014032_20110831_20160831_01_T1.png" width="600">
+</p>
+<p align="center">
+    <em>An example of Land surface temperature computed in NYC using raw data from the Landsat files "LT05_L1TP_014032_20110831_20160831_01_T1". </em>
 </p>
 
 ### E. Compute Summary Statistics
