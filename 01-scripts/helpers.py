@@ -23,7 +23,11 @@ def open_and_clip(filepath, boundary):
         Open a .tif file and immediately clip it to a boundary. This is used to clip Landsat
         files to NYC. 
     """
-    return rxr.open_rasterio(filepath, masked=True).rio.clip(boundary,from_disk=True).squeeze()
+    
+    xds = rxr.open_rasterio(filepath)
+    clipped = xds.rio.clip(boundary.geometry.values, boundary.crs)
+
+    return clipped.squeeze()
 
 def clip_and_export(rawfilepath, boundary, outfilepath):
     """
