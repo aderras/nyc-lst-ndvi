@@ -1,14 +1,31 @@
-## Introduction
+## 0. Introduction and Contents
 
-This repository was created for the Earth Observations Applications for Resiliency team in NASA's Climate Change Research initiative during 2021-2022. In it are the Jupyter notebooks and processed data used to compute land surface temperature (LST) and normalized difference vegetation index (NDVI) in New York City from 1984 to the 2022. 
+This repository was created for the Earth Observations Applications for Resiliency team as part of NASA's Climate Change Research Initiative in 2021-2022. In it are the Jupyter notebooks and processed data used to compute land surface temperature (LST) and normalized difference vegetation index (NDVI) in New York City from 1984 to the 2022. 
 
-## Methodology
+Author: Amel Derras-Chouk
 
-The following was completed on a Linux Centos computer using Python 3.6.12. The steps outlined below describe the methodology in the Jupyter notebooks. 
+### Contents
+
+The project contents are divided into folders:
+
+- `00-notebooks/`: Jupyter notebooks used to complete the project. 
+- `01-scripts/`: Scripts containing helper functions that are used in several of the Jupyter notebooks.
+- `02-data/`: Processed data, including .tif, .csv, .txt, and .shp files. (The contents of the folder and the naming conventions are detailed in the [Data](#data) section of this readme.)
+- `03-figs/`: Plots generated in the Jupyter notebooks saved to .png format
+
+Below we describe 
+
+1. The methodology used to compute LST and NDVI
+2. The data used and explanations of the contents of the `02-data/` folder. 
+
+
+## 1. Methodology <a id="methodology"> </a>
+
+The following was completed on a Linux Centos computer using Python 3.6.12. The steps outlined below describe the methodology presented in the Jupyter notebooks. 
 
 ### A. Find Viable Data
 
-1. **Perform a dataset search using the USGS API.** All functions related to this are in the script `01-scripts/usgsAPI.py`, and the notebook used query the API is `00-notebooks/1_find-scenes.ipynb`. We input the aliases of the desired datasets, Landsats 5 and 8, to obtain a list of dataset objects.
+1. **Perform a dataset search using the USGS API.** All functions related to this step are in the script `01-scripts/usgsAPI.py`, and the notebook used query the API is `00-notebooks/1_find-scenes.ipynb`. We input the aliases of the desired datasets, Landsats 5 and 8, to obtain a list of dataset objects.
 2. **Filter for NYC.** For every dataset object, search for scenes that contain lower left (`ll`) and upper right (`ur`) longitude and latitude coordinates of a square encompassing NYC. 
 3. **Filter the resulting scenes for ones with:**
     - less than 10% cloud cover
@@ -19,12 +36,12 @@ The following was completed on a Linux Centos computer using Python 3.6.12. The 
 <img src="https://ims.cr.usgs.gov/browse/landsat_8_c1/2015/014/032/LC08_L1TP_014032_20150826_20170225_01_T1.jpg" width="400">
 </p>
 <p align="center">
-    <em>An example of a Landsat scene which fits the search criteria described in the text. </em>
+    <em>An example of a Landsat scene that fits the search criteria described in the text. </em>
 </p>
 
 ### B. Download Landsat Data
 
-To download Landsat data, we use the USGS bulk downloader. The steps are:
+To download Landsat data, we use the USGS bulk downloader. (This step was completed in late 2021/early 2022, so the bulk-download application was used. The USGS has released a web-based downloader which will be used in the future: [https://eebulk.cr.usgs.gov/](https://eebulk.cr.usgs.gov/)). The steps are:
 
 1. **Install the bulk downloader application from [USGS](https://dds.cr.usgs.gov/bulk).** For Linux, I had to first install Java 11 in my local directory. To run the installer, I define the `INSTALL4J_JAVA_HOME` variable in my `.bash_profile` file. After refreshing terminal (or just loading the editted `.bash_profile` as the source), I make the downloaded installer executable and run it through command line. When it asks for download locations, make sure to select ones within the local directory if you do not have root access. To run the program in the future, navigate to the executable in install directory you chose.
 2. **Create a bulk download request.** In the [EarthExplorer](https://earthexplorer.usgs.gov/) webpage, select `Manage Criteria`. Click on `Scene Lists` in the left menu. Then click on Landsat Product ID list. Copy and paste the Landsat IDs that were saved to `scene_c1_l1_displayIDs.txt` into the text box. Then click upload. 
@@ -33,7 +50,7 @@ To download Landsat data, we use the USGS bulk downloader. The steps are:
 
 **NOTE:** Even though USGS encourages us to use Collection 2 Landsat data, the bulk-download request returns an error whenever a Collection 2 scene is requested. This is why only Collection 1 scenes were used. (As of February 2022.)
 
-### C. Clip Raw Data to NYC 
+### C. Clip Raw Data to NYC Boundary
 
 We clip raw Landsat data to the New York City boundary. We clip only the band numbers that are needed for LST and NDVI calculations. The bands used are summarized in the following table.
 
@@ -84,15 +101,18 @@ Having computed LST and NDVI across NYC, we compute summary statistics within HO
 
 of the LST and NDVI within every HOLC boundary and save the results to a CSV file, `summary_stats/stats_lst_LANDSAT-IDENTIFIER.csv`. For every Landsat file, we end up with a set of mean pixels, median pixels, etc, associated with every HOLC boundary. Each boundary forms a row in the exported summary statistics file.
 
-We additionally compute aggregate summary statistics. For every Landsat file, we compute the mean of the medians for each HOLC grade, along with the mean of the means, mean of the minima, etc. Results are stored as a row in the aggregated statistics file in `summary_stats_agg/lst_mean_stats_combined.csv` and `summary_stats_agg/ndvi_mean_stats_combined.csv`
+We additionally compute aggregate summary statistics using four different methods, each of which is described in the notebook `00-notebooks/4_summary-statistics.ipynb`. 
 
-## Data
+For every Landsat file, we compute the mean of the medians for each HOLC grade, along with the mean of the means, mean of the minima, etc. Results are stored as a row in the aggregated statistics file in `summary_stats_agg/lst_mean_stats_combined.csv` and `summary_stats_agg/ndvi_mean_stats_combined.csv`
 
-LST and NDVI are computed using raw data from Landsats 5 and 8. The raw data is available from the USGS, and the scenes used are listed in [Table 1](#landsatids). Data sources, data types, and naming conventions for the raw and processed data are shown in [Tables 2](#raw-data) and [3](#processed-data). All data is stored in the `02-data/` folder of the project. All folders referred to below are with respect to this one. 
+## 2. Data
+
+LST and NDVI are computed using raw data from Landsats 5 and 8. The raw data is available from the USGS, and the scenes used are listed in [Table 1](#landsatids). Data sources, data types, and naming conventions for the raw and processed data are shown in [Tables 2](#raw-data) and [3](#
+processed-data). All data is stored in the `02-data/` folder of the project. All folders referred to below are with respect to this one. 
 
 ### Table 1: Landsat scenes used <a id="landsatids"></a>
 
-A total of 113 Landsat scenes fit the search criteria. Their identifiers are stored in `scene-search/scene_c1_l1_displayIDs"` and are listed in the following table. 
+A total of 114 Landsat scenes fit the search criteria. Their identifiers are stored in `scene-search/scene_c1_l1_displayIDs"` and are listed in the following table. 
 
 | Landsat IDs |
 |------------------------------------------|
@@ -210,6 +230,8 @@ A total of 113 Landsat scenes fit the search criteria. Their identifiers are sto
 | LT05_L1TP_014032_20110730_20160831_01_T1 |
 | LT05_L1TP_014032_20110714_20160831_01_T1 |
 | LT05_L1TP_013032_20110707_20160831_01_T1 |
+
+## Data <a id="data"></a>
 
 ### Table 2: Raw Data <a id="raw-data"></a>
 
