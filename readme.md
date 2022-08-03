@@ -105,7 +105,7 @@ We additionally compute aggregate summary statistics using four different method
 
 For every Landsat file, we compute the mean of the medians for each HOLC grade, along with the mean of the means, mean of the minima, etc. Results are stored as a row in the aggregated statistics file in `summary_stats_agg/lst_mean_stats_combined.csv` and `summary_stats_agg/ndvi_mean_stats_combined.csv`
 
-## 2. Data
+## 2. Data <a id="data"></a>
 
 LST and NDVI are computed using raw data from Landsats 5 and 8. The raw data is available from the USGS, and the scenes used are listed in [Table 1](#landsatids). Data sources, data types, and naming conventions for the raw and processed data are shown in [Tables 2](#raw-data) and [3](#
 processed-data). All data is stored in the `02-data/` folder of the project. All folders referred to below are with respect to this one. 
@@ -230,8 +230,6 @@ A total of 114 Landsat scenes fit the search criteria. Their identifiers are sto
 | LT05_L1TP_014032_20110730_20160831_01_T1 |
 | LT05_L1TP_014032_20110714_20160831_01_T1 |
 | LT05_L1TP_013032_20110707_20160831_01_T1 |
-
-## Data <a id="data"></a>
 
 ### Table 2: Raw Data <a id="raw-data"></a>
 
