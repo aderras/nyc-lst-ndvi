@@ -107,8 +107,7 @@ For every Landsat file, we compute the mean of the medians for each HOLC grade, 
 
 ## 2. Data <a id="data"></a>
 
-LST and NDVI are computed using raw data from Landsats 5 and 8. The raw data is available from the USGS, and the scenes used are listed in [Table 1](#landsatids). Data sources, data types, and naming conventions for the raw and processed data are shown in [Tables 2](#raw-data) and [3](#
-processed-data). All data is stored in the `02-data/` folder of the project. All folders referred to below are with respect to this one. 
+LST and NDVI are computed using raw data from Landsats 5 and 8. The raw data is available from the USGS, and the scenes used are listed in [Table 1](#landsatids). Data sources, data types, and naming conventions for the raw and processed data are shown in [Tables 2](#raw-data) and [3](#processed-data). All data is stored in the `02-data/` folder of the project. All folders referred to below are with respect to this one. 
 
 ### Table 1: Landsat scenes used <a id="landsatids"></a>
 
