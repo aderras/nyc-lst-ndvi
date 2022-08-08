@@ -73,9 +73,7 @@ To compute LST, we follow the procedure outline by McConnell et al. in their 202
 1. Convert Band 6 to Top of Atmosphere (TOA) spectral radiance using two constants from Landsat metadata
 2. Compute brightness temperature using TOA and 2 constants from metadata
 3. Compute NDVI using 
-$$
-\frac{\text{NIR} - \text{Red}}{\text{NIR} + \text{Red}}
-$$
+$$\frac{\text{NIR} - \text{Red}}{\text{NIR} + \text{Red}}$$
 4. Convert NDVI to vegetation fraction
 5. Compute emissivity
 6. Compute LST using brightness temperature, emissivity, and some constants (specified in McConnell's paper)
