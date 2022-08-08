@@ -241,12 +241,13 @@ A total of 114 Landsat scenes fit the search criteria. Their identifiers are sto
 
 ### Table 3: Processed Data <a id="processed-data"></a>
 
-Below we refer to an identifier called **TRUNCATED-LANDSAT-FILENAME**. This is the Landsat filename with band number omitted. E.g. "LC08_L1TP_013032_20140731_20170304_01_T1_B4.TIF" has the truncated identifier "LC08_L1TP_013032_20140731_20170304_01_T1"
+Below we refer to an identifier called **LANDSAT-ID**. This ID the same one used by the USGS. A list of the ID's is give in [Table 1](#landsatids).
 
 | Description | Location | Data type | Naming convention | 
 |----|--|--|----|
 | Clipped Landsat data | `landsat_clipped_nyc/` | TIF | "clipped_nyc_**RAW-LANDSAT-FILENAME**.TIF" |
-| LST | `lst_clipped_nyc/` | TIF | "lst_**TRUNCATED-LANDSAT-FILENAME**.TIF" |
-| NDVI | `ndvi_clipped_nyc/` | TIF | "ndvi_**TRUNCATED-LANDSAT-FILENAME**.TIF" |
-| Summary statistics | `summary_stats` | CSV | "stats_lst_**TRUNCATED-LANDSAT-FILENAME**.csv" and "stats_ndvi_**TRUNCATED-LANDSAT-FILENAME**.csv" |
-| Aggregated summary statistics | `summary_stats_agg` | CSV | `lst_mean_stats_combined` and `ndvi_mean_stats_combined` |
+| LST | `lst_clipped_nyc/` | TIF | "lst_**LANDSAT-ID**.TIF" |
+| NDVI | `ndvi_clipped_nyc/` | TIF | "ndvi_**LANDSAT-ID**.TIF" |
+| Summary statistics | `summary_stats` | CSV | "stats_lst_**LANDSAT-ID**.csv" and "stats_ndvi_**LANDSAT-ID**.csv" |
+| Extended summary statistics | `summary_stats` | CSV | "ext_stats_lst_**LANDSAT-ID**.csv" and "ext_stats_ndvi_**LANDSAT-ID**.csv" |
+| Summary | `summary_stats_temporal` | CSV | "m**X**_ ext_lst_filt**Y**.csv" where **X** is an integer between 1 and 4 and **Y** is a float between 0.0 and 1.0. (We use 0.0 and 0.9.) |
