@@ -2,7 +2,10 @@
 
 This repository was created for the Earth Observations Applications for Resiliency team as part of NASA's Climate Change Research Initiative in 2021-2022. In it are the Jupyter notebooks and processed data used to compute land surface temperature (LST) and normalized difference vegetation index (NDVI) in New York City from 1984 to the 2022. 
 
-Author: Amel Derras-Chouk
+#### Authors 
+- Notebooks 1-6 and contents of 01-scripts: Amel Derras-Chouk
+- Notebook 7: Alvin Chen
+
 
 ### Contents
 
